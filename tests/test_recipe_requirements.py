@@ -159,8 +159,11 @@ class ReviveRecipeTests(unittest.TestCase):
         quests = self.target['Narrative']['NarrativeSavedQuests']
         self.assertEqual(quests[-1], original['Narrative']['NarrativeSavedQuests'][-1])
         self.assertEqual(quests[0]['QuestCompletion'], 'EQuestCompletion::QC_Started')
-        branch = next(b for b in quests[0]['QuestBranches'] if b['BranchID'] == '1')
-        self.assertEqual(branch['BranchType'], 'EBranchType::BranchActivating')
+        # 分支 1/2 由配方直接标记完成（游戏引擎 BUG：修复后的存档上阶段 1/2 无法自然推进）
+        branches = {b['BranchID']: b['BranchType'] for b in quests[0]['QuestBranches']}
+        self.assertEqual(branches['1'], 'EBranchType::BranchCompleted')
+        self.assertEqual(branches['2'], 'EBranchType::BranchCompleted')
+        self.assertEqual(branches['3'], 'EBranchType::BranchActivating')
         # 全局标签：失败/死亡/乌冷霜/见到肉身 全部清除，无关标签保留
         tags = self.target['EventPipeline']['GlobalTags']
         for op in T.de_ops(self.recipe['slot_ops']):

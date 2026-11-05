@@ -2,7 +2,7 @@
  "quest": "BaiShanMiWen",
  "quest_cn": "白山秘闻·复活剑偶（撤销错误击杀）",
  "format": 1,
- "note": "来自玩家真实挽救记录并经游戏内验证：廿一号·剑偶「玉璧」被提前击杀、任务失败后，不重玩、不回档，在最新存档上复活剑偶并把白山密闻还原为进行中（QC_Started），玩家可按正确顺序重做（先找毕桃桃的肉身再打剑偶）。同时把乌冷霜还原为未出场状态。其余任务与收集进度不受影响；成就文件不做任何改动。适用范围与限制见 BaiShanMiWenRevive.md。使用 --recipe references/recipes/BaiShanMiWenRevive.json 指定本配方。",
+ "note": "来自玩家真实挽救记录并经两次游戏内完整重放验证：廿一号·剑偶「玉璧」被提前击杀、任务失败后，不重玩、不回档，在最新存档上复活剑偶与乌冷霜，并把白山密闻推进到决战阶段（分支 1/2 直接标记完成、分支 3 激活——游戏引擎在修复后的存档上存在分支完成判定不触发的 BUG，手动推进是唯一通路），任务目标即「找到并击败毕桃桃的人偶」。击败人偶后游戏走「死亡有任务」正确路径自行结算完成（QC_Succeded、结局序列 Seq081-2-2、奖励饰品 AC_HeavyAttackDamage）。其余任务与收集进度不受影响；成就文件不做任何改动。适用范围与限制见 BaiShanMiWenRevive.md。使用 --recipe references/recipes/BaiShanMiWenRevive.json 指定本配方。",
  "requires": [
   {
    "path": ["PBZGameSystem", "CycleCount"],
@@ -120,10 +120,10 @@
   }, {
    "QuestClass": "/Game/PBZstory/PBZQuest/Simple/BaiShanMiWen.BaiShanMiWen_C",
    "QuestBranches": [
-    {"BranchID": "1", "BranchType": "EBranchType::BranchActivating", "DirtyTime": "2026.11.02-17.23.32"},
-    {"BranchID": "2", "BranchType": "EBranchType::None", "DirtyTime": "0001.01.01-00.00.00"},
+    {"BranchID": "1", "BranchType": "EBranchType::BranchCompleted", "DirtyTime": "2026.11.05-20.21.40"},
+    {"BranchID": "2", "BranchType": "EBranchType::BranchCompleted", "DirtyTime": "2026.11.05-20.21.40"},
     {"BranchID": "PBZQuestBranch_4", "BranchType": "EBranchType::None", "DirtyTime": "0001.01.01-00.00.00"},
-    {"BranchID": "3", "BranchType": "EBranchType::None", "DirtyTime": "0001.01.01-00.00.00"},
+    {"BranchID": "3", "BranchType": "EBranchType::BranchActivating", "DirtyTime": "2026.11.05-20.21.40"},
     {"BranchID": "S1", "BranchType": "EBranchType::BranchCompleted", "DirtyTime": "2026.11.02-17.23.32"}
    ],
    "QuestCompletion": "EQuestCompletion::QC_Started",
